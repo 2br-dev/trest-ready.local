@@ -38,7 +38,24 @@ class InvoiceCtrl extends Crud
                     $renter = new \Kirova\Model\Orm\Renter($invoice['renter_id']);
                     return '<div><a href="'.$this->router->getAdminPattern('edit', [':id' => $invoice['id']]).'" class="crud-edit">'.$renter['short_title'].'</a></div>';
                 }),
-                new TableType\Text('period_month', t('Месяц')),
+                new TableType\Userfunc('period_month', 'Месяц', function($value, $field){
+                    $monthes = [
+                        "Январь",
+                        "Февраль",
+                        "Март",
+                        "Апрель",
+                        "Май",
+                        "Июнь",
+                        "Июль",
+                        "Август",
+                        "Сентябрь",
+                        "Октябрь",
+                        "Ноябрь",
+                        "Декабрь",
+                    ];
+                    $month = (int)$value - 1;
+                    return "<div>{$monthes[$month]}</div>";
+                }),
                 new TableType\Text('period_year', t('Год')),
                 new TableType\Text('sum', t('Сумма')),
                 new TableType\Actions('id', [
