@@ -119,9 +119,8 @@ class Invoice extends OrmObject
 
     public function beforeWrite($flag)
     {
-        if($this == self::INSERT_FLAG){
+        if($flag == self::INSERT_FLAG){
             $this['new_ip'] = 1;
         }
-
     }
 }

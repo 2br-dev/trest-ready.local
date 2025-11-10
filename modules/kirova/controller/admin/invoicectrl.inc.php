@@ -28,6 +28,7 @@ class InvoiceCtrl extends Crud
         //Отобразим таблицу со списком объектов
         $helper->setTable(new Table\Element([
             'Columns' => [
+                new TableType\Checkbox('id', ['ThAttr' => ['width' => 20]]),
                 new TableType\Text('number', 'Номер', [
                     'Sortable' => SORTABLE_BOTH,
                     'href' => $this->router->getAdminPattern('edit', [':id' => '@id']),
